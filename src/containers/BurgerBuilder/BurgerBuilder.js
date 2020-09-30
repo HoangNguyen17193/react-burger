@@ -30,8 +30,6 @@ class BurgerBuilder extends Component {
 
     updatePurchaseState(ingredients) {
         const sum = Object.values(ingredients).reduce((total, ingredientQuantity) => total + ingredientQuantity, 0);
-        console.log(ingredients);
-        console.log(sum);
         this.setState({
             purchasable: sum > 0
         })

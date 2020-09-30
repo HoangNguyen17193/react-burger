@@ -6,7 +6,7 @@ import styles from './Layout.module.scss';
 
 class Layout extends Component {
     state = {
-        showSideDrawer: true
+        showSideDrawer: false
     };
     sideDrawerCloseHandler = () => {
         this.setState({
