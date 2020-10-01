@@ -19,12 +19,7 @@ class BurgerBuilder extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ingredients: {
-                salad: 0,
-                bacon: 0,
-                cheese: 0,
-                meat: 0
-            },
+            ingredients: null,
             totalPrice: 4,
             purchasable: false,
             purchasing: false,
@@ -116,6 +111,16 @@ class BurgerBuilder extends Component {
 
     };
 
+    componentDidMount() {
+        axios.get('/ingredients.json')
+            .then(response => {
+                console.log()
+                this.setState({
+                    ingredients: response.data
+                })
+            })
+    }
+
 
     render() {
         const disabledInfo = {
@@ -125,7 +130,7 @@ class BurgerBuilder extends Component {
             disabledInfo[key] = disabledInfo[key] <=0;
         }
 
-        const orderSummary = this.state.loading
+        const orderSummary = (this.state.loading || !this.state.ingredients)
             ? <Spinner />
             : <OrderSummary
                 ingredients={this.state.ingredients}
@@ -133,11 +138,9 @@ class BurgerBuilder extends Component {
                 continueOrder={this.purchaseContinueHandler}
                 price={this.state.totalPrice}
             />;
-        return (
-            <Aux>
-                <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-                    {orderSummary}
-                </Modal>
+
+        const burger = this.state.ingredients
+            ? <Aux>
                 <Burger ingredients = {this.state.ingredients}/>
                 <BuildControls
                     totalPrice={this.state.totalPrice}
@@ -147,6 +150,14 @@ class BurgerBuilder extends Component {
                     purchasable={this.state.purchasable}
                     ordered={this.purchaseHandler}
                 />
+            </Aux>
+            : <Spinner />
+        return (
+            <Aux>
+                <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
+                    {orderSummary}
+                </Modal>
+                {burger}
             </Aux>
         );
     }
