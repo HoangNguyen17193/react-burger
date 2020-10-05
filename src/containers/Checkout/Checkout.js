@@ -2,20 +2,14 @@ import React, {Component} from "react";
 import { Route } from 'react-router-dom';
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from "./ContactData/ContactData";
-import Price from '../../services/Price';
+import Price, {BASE_PRICE} from '../../services/Price';
 
 class Checkout extends Component {
     constructor(props) {
         super(props);
-        const ingredients = {
-            salad: 0,
-            meat: 0,
-            cheese: 0,
-            bacon: 0,
-            totalPrice: 0.0
-        };
         this.state = {
-            ingredients
+            ingredients: null,
+            totalPrice: BASE_PRICE
         };
     }
     cancelCheckout = () => {
