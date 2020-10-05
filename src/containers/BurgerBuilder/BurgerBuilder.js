@@ -6,7 +6,7 @@ import Modal from '../../components/Common/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/Common/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import Price from "../../services/Price";
+import Price, { BASE_PRICE } from "../../services/Price";
 import axios from '../../axios-orders';
 
 
@@ -15,7 +15,7 @@ class BurgerBuilder extends Component {
         super(props);
         this.state = {
             ingredients: null,
-            totalPrice: 0,
+            totalPrice: BASE_PRICE,
             purchasable: false,
             purchasing: false,
             loading: false,
