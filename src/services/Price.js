@@ -10,6 +10,6 @@ export default class Price {
     static calculateTotalPrice(ingredients) {
         return Object.entries(ingredients)
             .map(([key, value]) => INGREDIENT_PRICES[key] * (value || 0))
-            .reduce((sum, price) => sum + price, 0);
+            .reduce((sum, price) => sum + price, 0).toFixed(2);
     }
 }
