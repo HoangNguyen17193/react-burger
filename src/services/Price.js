@@ -6,7 +6,7 @@ const INGREDIENT_PRICES = {
     bacon: 0.7
 };
 
-const BASE_PRICE = 4;
+const BASE_PRICE = 4.0;
 
 export {
     INGREDIENT_PRICES,
@@ -15,8 +15,9 @@ export {
 
 export default class Price {
     static calculateTotalPrice(ingredients) {
-        return BASE_PRICE + Object.entries(ingredients)
+        const ingredientsPrice = Object.entries(ingredients)
             .map(([key, value]) => INGREDIENT_PRICES[key] * (value || 0))
-            .reduce((sum, price) => sum + price, 0).toFixed(2);
+            .reduce((sum, price) => sum + price, 0);
+        return (BASE_PRICE + ingredientsPrice).toFixed(2);
     }
 }
