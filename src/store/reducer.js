@@ -1,4 +1,4 @@
-import {BASE_PRICE} from '../services/Price';
+import Price, {BASE_PRICE} from '../services/Price';
 import * as actionTypes from './actions';
 
 const initialState = {
@@ -13,21 +13,26 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADD_INGREDIENT:
-            return {
-                ...state,
-                ingredients: {
-                    ...state.ingredients,
-                    [action.ingredientName]: state.ingredients[action.ingredientName] + 1
-                }
+        case actionTypes.ADD_INGREDIENT: {
+            const updatedIngredients = {
+                ...state.ingredients,
+                [action.ingredientName]: state.ingredients[action.ingredientName] + 1
             };
-        case actionTypes.REMOVE_INGREDIENT:
             return {
                 ...state,
-                ingredients: {
-                    ...state.ingredients,
-                    [action.ingredientName]: state.ingredients[action.ingredientName] - 1
-                }
+                ingredients: updatedIngredients,
+                totalPrice: Price.calculateTotalPrice(updatedIngredients)
+            };
+        }
+        case actionTypes.REMOVE_INGREDIENT:
+            const updatedIngredients = {
+                ...state.ingredients,
+                [action.ingredientName]: state.ingredients[action.ingredientName] - 1
+            };
+            return {
+                ...state,
+                ingredients: updatedIngredients,
+                totalPrice: Price.calculateTotalPrice(updatedIngredients)
             };
         default:
             return state
