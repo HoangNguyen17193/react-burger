@@ -8,7 +8,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/Common/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
-import * as ActionTypes from '../../store/actions';
+import * as ActionTypes from '../../store/actions/actionTypes';
 
 
 class BurgerBuilder extends Component {
