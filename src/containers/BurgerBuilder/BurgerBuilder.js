@@ -33,7 +33,7 @@ class BurgerBuilder extends Component {
     };
 
     purchaseContinueHandler = async () => {
-        const queryParams = Object.entries(this.state.ingredients)
+        const queryParams = Object.entries(this.props.ingredients)
             .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
             .join('&');
         this.props.history.push({
