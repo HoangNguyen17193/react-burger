@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from "./ContactData/ContactData";
+import * as orderActions from '../../store/order/orderAction';
 
 class Checkout extends Component {
     cancelCheckout = () => {
@@ -13,7 +14,7 @@ class Checkout extends Component {
     };
 
     render() {
-        if(!this.props.ingredients){
+        if(!this.props.ingredients || this.props.purchased){
             return <Redirect to="/" />
         }
         return (
@@ -26,13 +27,24 @@ class Checkout extends Component {
           </div>
         );
     }
+
+    componentDidMount() {
+        this.props.onInitPurchase();
+    }
 }
 
 const mapStateToProps = state => {
     return {
         ingredients: state.burgerBuilder.ingredients,
-        totalPrice: state.burgerBuilder.totalPrice
+        totalPrice: state.burgerBuilder.totalPrice,
+        purchased: state.order.purchased
     };
 };
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onInitPurchase: () => dispatch(orderActions.purchaseInit())
+    }
+};
     
-export default connect(mapStateToProps)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
