@@ -27,10 +27,6 @@ class Checkout extends Component {
           </div>
         );
     }
-
-    componentDidMount() {
-        this.props.onInitPurchase();
-    }
 }
 
 const mapStateToProps = state => {
