@@ -39,7 +39,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
                 error: false
             }
         }
-        case actionTypes.FETCH_INGREDIENTS_FAILED: {
+        case actionTypes.FETCH_INGREDIENTS_FAIL: {
             return {
                 ...state,
                 error: true
