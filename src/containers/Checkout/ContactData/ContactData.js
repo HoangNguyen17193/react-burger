@@ -6,7 +6,7 @@ import axios from '../../../axios-orders';
 import Price from '../../../services/Price';
 import Spinner from '../../../components/Common/Spinner/Spinner';
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
-import * as orderActions from '../../../store/actions/order';
+import * as orderActions from '../../../store/order/orderAction';
 
 class ContactData extends Component {
     state = {

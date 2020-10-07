@@ -7,15 +7,10 @@ import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import burgerBuilderReducer from "./store/reducers/burgerBuilder";
-import orderReducer from './store/reducers/order';
-
+import rootReducer from "./store/rootReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const rootReducer = combineReducers({
-    burgerBuilder: burgerBuilderReducer,
-    order: orderReducer
-});
+
 const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)
 ));
