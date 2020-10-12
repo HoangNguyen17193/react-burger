@@ -12,7 +12,7 @@ import { addIngredient, removeIngredient, initIngredients } from '../../store/bu
 import { purchaseInit } from '../../store/order/orderAction';
 
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
     constructor(props) {
         super(props);
         this.state = {
