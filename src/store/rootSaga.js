@@ -1,9 +1,11 @@
-import {spawn} from 'redux-saga/effects';
+import {spawn, all} from 'redux-saga/effects';
 
 import {watchBurgerBuilder} from './burgerBuilder/burgerBuilderSaga';
 import {watchOrder} from './order/orderSaga';
 
 export default function* rootSaga() {
-    yield spawn(watchBurgerBuilder);
-    yield spawn(watchOrder);
+    yield all([
+        spawn(watchBurgerBuilder),
+        spawn(watchOrder)
+    ]);
 }
