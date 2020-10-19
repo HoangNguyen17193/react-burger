@@ -1,4 +1,5 @@
 # React Burger
+[![Build Status](https://travis-ci.org/HoangNguyen17193/react-burger.svg?branch=master)](https://travis-ci.org/HoangNguyen17193/react-burger)
 
 From Udemy course: [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/)
 
