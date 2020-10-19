@@ -1,0 +1,9 @@
+.BuildControlsWrapper {
+  height: calc(100% - 250px);
+}
+
+@media (min-width: 500px) and (min-height: 401px) {
+  .BuildControlsWrapper {
+    height: calc(100% - 250px);
+  }
+}
