@@ -10,7 +10,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 import { addIngredient, removeIngredient, initIngredients } from '../../store/burgerBuilder/burgerBuilderAction';
 import { purchaseInit } from '../../store/order/orderAction';
-
+import classes from './BurgerBuider.module.scss';
 
 export class BurgerBuilder extends Component {
     constructor(props) {
@@ -74,14 +74,16 @@ export class BurgerBuilder extends Component {
         const burger = this.props.ingredients
             ? <Aux>
                 <Burger ingredients = {this.props.ingredients}/>
-                <BuildControls
-                    totalPrice={this.props.totalPrice}
-                    disabled={disabledInfo}
-                    addIngredientHandler={this.props.onIngredientAdded}
-                    removeIngredientHandler={this.props.onIngredientRemoved}
-                    purchasable={this.isPurchasable(this.props.ingredients)}
-                    ordered={this.purchaseHandler}
-                />
+                <div className={classes.BuildControlsWrapper}>
+                    <BuildControls
+                        totalPrice={this.props.totalPrice}
+                        disabled={disabledInfo}
+                        addIngredientHandler={this.props.onIngredientAdded}
+                        removeIngredientHandler={this.props.onIngredientRemoved}
+                        purchasable={this.isPurchasable(this.props.ingredients)}
+                        ordered={this.purchaseHandler}
+                    />
+                </div>
             </Aux>
             : <Spinner />;
         return (
